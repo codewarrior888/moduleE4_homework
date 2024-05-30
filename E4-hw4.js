@@ -22,20 +22,23 @@ function Kettle(name, power, color, volume) {
     ElectricalAppliance.call(this, name, power);
     this.color = color;
     this.volume = volume;
-    this.currentVolume = 0;
+    this.currentWaterAmount = 0;
+    this.checkStatus = function(){
+        console.log(`${this.name} is ${this.isPlugged ? 'plugged in' : 'unplugged'}, volume: ${this.volume}ml, power: ${this.power}W`);
+    }
 }
 
 Kettle.prototype = Object.create(ElectricalAppliance.prototype);
 Kettle.prototype.constructor = Kettle;
 
-Kettle.prototype.fillWater = function(volume) {
-    this.currentVolume = volume;
-    console.log(`${this.name} filled with ${this.currentVolume}ml of water.`);
+Kettle.prototype.fillWater = function(amount) {
+    this.currentWaterAmount = amount;
+    console.log(`${this.name} filled with ${this.currentWaterAmount}ml of water.`);
 }
 
 Kettle.prototype.boilWater = function() {
     if (this.isPlugged) {
-        if (this.currentVolume > 0) {
+        if (this.currentWaterAmount > 0) {
             console.log(`${this.name} is boiling water.`);
         } else {
             console.log(`Fill the ${this.name} with water to boil.`);
@@ -46,7 +49,7 @@ Kettle.prototype.boilWater = function() {
 }
 
 Kettle.prototype.checkWaterLevel = function() {
-    console.log(`${this.name} has ${this.currentVolume}ml of water.`);
+    console.log(`${this.name} has ${this.currentWaterAmount}ml of water.`);
 }
 
 function Lamp(name, power, color, brightness) {
@@ -104,8 +107,8 @@ const lamp = new Lamp('Office lamp',  50, 'white','medium');
 const fan = new Fan('My Cool Fan', 75);
 
 console.log(kettle);
+kettle.checkStatus();
 kettle.plugIn();
-lamp.status();
 kettle.checkWaterLevel();
 kettle.fillWater(500);
 kettle.boilWater();

@@ -25,17 +25,17 @@ class Kettle extends ElectricalAppliance {
         super(name, power);
         this.color = color;
         this.volume = volume;
-        this.currentVolume = 0;
+        this.currentWaterAmount = 0;
     }
 
-    fillWater(volume) {
-        this.currentVolume = volume;
-        console.log(`${this.name} filled with ${this.currentVolume}ml of water.`);
+    fillWater(amount) {
+        this.currentWaterAmount = amount;
+        console.log(`${this.name} filled with ${this.currentWaterAmount}ml of water.`);
     }
 
     boilWater() {
         if (this.isPlugged) {
-            if (this.currentVolume > 0) {
+            if (this.currentWaterAmount > 0) {
                 console.log(`${this.name} is boiling water.`);
             } else {
                 console.log(`Fill the ${this.name} with water to boil.`);
@@ -46,7 +46,7 @@ class Kettle extends ElectricalAppliance {
     }
 
     checkWaterLevel() {
-        console.log(`${this.name} has ${this.currentVolume}ml of water.`);
+        console.log(`${this.name} has ${this.currentWaterAmount}ml of water.`);
     }
 }
 
@@ -103,15 +103,15 @@ const lamp = new Lamp('Office lamp',  50, 'white','medium');
 const fan = new Fan('My Cool Fan', 75);
 
 console.log(kettle);
+kettle.status();
 kettle.plugIn();
-lamp.status();
 kettle.checkWaterLevel();
 kettle.fillWater(500);
 kettle.boilWater();
 
 console.log(lamp);
-lamp.plugIn();
 lamp.status();
+lamp.plugIn();
 lamp.toggle();
 lamp.adjustBrightness('high');
 lamp.changeColor('yellow');
