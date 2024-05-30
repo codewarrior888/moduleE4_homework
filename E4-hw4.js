@@ -114,8 +114,8 @@ kettle.fillWater(500);
 kettle.boilWater();
 
 console.log(lamp);
-lamp.plugIn();
 lamp.status();
+lamp.plugIn();
 lamp.toggle();
 lamp.adjustBrightness('high');
 lamp.changeColor('yellow');
